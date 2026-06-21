@@ -455,9 +455,9 @@ body {
     border-radius: var(--r-md);
     font-family: var(--font-sans);
     font-size: var(--fs-base);
-    color: #ffffff !important; /* Force white text */
+    color: #000000 !important; /* Force pure black text */
     font-weight: 600;
-    background: rgba(0, 0, 0, 0.5) !important; /* Force dark background */
+    background: #ffffff !important; /* Force white background */
     transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
     -webkit-appearance: none;
     appearance: none;
