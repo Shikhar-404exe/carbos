@@ -2,7 +2,7 @@
 echo "Deploying VayuSense to Google Cloud & Firebase..."
 
 GCP_PROJECT_ID="scenic-energy-500112-u4"
-FIREBASE_PROJECT_ID="carbon-1c86f"
+FIREBASE_PROJECT_ID="scenic-energy-500112-u4"
 
 if [ -z "$GOOGLE_API_KEY" ]; then
     echo "ERROR: GOOGLE_API_KEY environment variable is missing."
