@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VayuSense — Atmospheric Intelligence Platform</title>
+    <meta name="description" content="VayuSense connects your personal carbon footprint with real-time HCHO and AQI satellite plume data over India, powered by Gemini AI and Google Cloud.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 1 — Language Selection
+    ════════════════════════════════════════════════════════════════ -->
+    <div id="languageScreen" class="screen active">
+        <div class="language-container">
+            <div class="platform-badge">🛰️ ISRO × Google Cloud</div>
+            <div class="logo">🌿</div>
+            <h1>VayuSense</h1>
+            <p class="subtitle">Atmospheric Intelligence Platform — Connect your carbon footprint to live HCHO satellite plumes over India</p>
+            <p class="lang-prompt" id="langPromptText">Select Your Language / اختر لغتك / Choisissez votre langue / Wählen Sie Ihre Sprache</p>
+            <div class="language-buttons">
+                <button class="language-btn" id="langBtnEn" onclick="selectLanguage('en')">
+                    <span class="flag">🇬🇧</span>
+                    <span>English</span>
+                </button>
+                <button class="language-btn" id="langBtnAr" onclick="selectLanguage('ar')">
+                    <span class="flag">🇸🇦</span>
+                    <span>العربية</span>
+                </button>
+                <button class="language-btn" id="langBtnFr" onclick="selectLanguage('fr')">
+                    <span class="flag">🇫🇷</span>
+                    <span>Français</span>
+                </button>
+                <button class="language-btn" id="langBtnDe" onclick="selectLanguage('de')">
+                    <span class="flag">🇩🇪</span>
+                    <span>Deutsch</span>
+                </button>
+            </div>
+            <footer class="footer">© 2026 VayuSense Platform · Hackathon Edition · Powered by Google Cloud &amp; Gemini AI</footer>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 2 — Multi-Step Input Form
+    ════════════════════════════════════════════════════════════════ -->
+    <div id="mainScreen" class="screen">
+        <div class="app-container">
+            <div class="header">
+                <div class="header-brand">
+                    <span class="header-icon">🌿</span>
+                    <h1 id="appTitle">VayuSense</h1>
+                </div>
+                <button class="btn-ghost" onclick="showLanguageScreen()" id="changeLangBtn">🌐 Language</button>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs" role="tablist">
+                <button class="tab-btn active" onclick="showTab('personal')" id="tabPersonal" role="tab" aria-selected="true">👤 Personal</button>
+                <button class="tab-btn" onclick="showTab('travel')" id="tabTravel" role="tab" aria-selected="false">🚗 Travel</button>
+                <button class="tab-btn" onclick="showTab('waste')" id="tabWaste" role="tab" aria-selected="false">♻️ Waste</button>
+                <button class="tab-btn" onclick="showTab('energy')" id="tabEnergy" role="tab" aria-selected="false">⚡ Energy</button>
+                <button class="tab-btn" onclick="showTab('consumption')" id="tabConsumption" role="tab" aria-selected="false">🌿 Consumption</button>
+            </div>
+
+            <!-- Tab Content Wrapper -->
+            <div class="tab-content-wrapper">
+
+                <!-- ── Personal Tab ── -->
+                <div id="personalTab" class="tab-content active" role="tabpanel">
+                    <div class="form-group">
+                        <label id="labelCity">📍 Your City</label>
+                        <span class="tooltip" title="Used to compute your distance from active atmospheric hotspots">?</span>
+                        <select id="city">
+                            <option value="Delhi">Delhi (NCR)</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Amritsar">Amritsar</option>
+                            <option value="Ludhiana">Ludhiana</option>
+                            <option value="Surat">Surat</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Patna">Patna</option>
+                            <option value="Indore">Indore</option>
+                            <option value="Agra">Agra</option>
+                            <option value="Varanasi">Varanasi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelHeight">Height (cm)</label>
+                        <span class="tooltip" title="Body metrics affect metabolic carbon emission estimates">?</span>
+                        <input type="number" id="height" min="100" max="250" value="170">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelWeight">Weight (kg)</label>
+                        <span class="tooltip" title="Body metrics affect metabolic carbon emission estimates">?</span>
+                        <input type="number" id="weight" min="30" max="200" value="70">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelGender">Gender</label>
+                        <select id="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelDiet">Diet</label>
+                        <span class="tooltip" title="Diet choice is one of the biggest emission factors">?</span>
+                        <select id="diet">
+                            <option value="omnivore">Omnivore</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelSocial">Social Activity</label>
+                        <select id="social">
+                            <option value="never">Never</option>
+                            <option value="sometimes" selected>Sometimes</option>
+                            <option value="often">Often</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ── Travel Tab ── -->
+                <div id="travelTab" class="tab-content" role="tabpanel">
+                    <div class="form-group">
+                        <label id="labelTransport">Transportation Type</label>
+                        <span class="tooltip" title="Transportation is a major emission source">?</span>
+                        <select id="transport">
+                            <option value="car">Car</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="public">Public Transport</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="walk">Walk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelDistance">Monthly Distance Traveled (km): <span id="distanceValue">1000</span> km</label>
+                        <input type="range" id="distance" min="0" max="5000" value="1000" step="50" oninput="updateSlider('distance')">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelFlights">Flight Frequency Last Month</label>
+                        <span class="tooltip" title="Flying emits 5x more CO₂ per km than driving">?</span>
+                        <select id="flights">
+                            <option value="never">Never</option>
+                            <option value="once">Once</option>
+                            <option value="twice">Twice</option>
+                            <option value="often">Often (3+)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ── Waste Tab ── -->
+                <div id="wasteTab" class="tab-content" role="tabpanel">
+                    <div class="form-group">
+                        <label id="labelWasteAmount">Waste Produced per Week (kg): <span id="wasteValue">10</span> kg</label>
+                        <span class="tooltip" title="Average person produces 10–15 kg waste per week">?</span>
+                        <input type="range" id="wasteAmount" min="0" max="50" value="10" step="1" oninput="updateSlider('wasteAmount')">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelRecycling">Recycling Habits</label>
+                        <span class="tooltip" title="Recycling reduces emissions by ~70%">?</span>
+                        <select id="recycling">
+                            <option value="none">None</option>
+                            <option value="partial" selected>Partial</option>
+                            <option value="always">Always</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="composting">
+                        <label for="composting" id="labelComposting">Composting</label>
+                        <span class="tooltip" title="Composting eliminates 99% of waste emissions">?</span>
+                    </div>
+                </div>
+
+                <!-- ── Energy Tab ── -->
+                <div id="energyTab" class="tab-content" role="tabpanel">
+                    <div class="form-group">
+                        <label id="labelElectricity">Monthly Electricity Usage (kWh)</label>
+                        <span class="tooltip" title="Average Indian household uses 90–250 kWh per month">?</span>
+                        <input type="number" id="electricity" min="0" max="2000" value="250">
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="renewable">
+                        <label for="renewable" id="labelRenewable">Renewable Energy Source</label>
+                        <span class="tooltip" title="Renewable energy can eliminate energy emissions">?</span>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelHousehold">Number of People in Household</label>
+                        <select id="household">
+                            <option value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="labelHeating">Heating / Cooling Source</label>
+                        <select id="heating">
+                            <option value="gas">Natural Gas / LPG</option>
+                            <option value="oil">Kerosene / Oil</option>
+                            <option value="electric">Electric</option>
+                            <option value="heatpump">Inverter AC / Heat Pump</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ── Consumption Tab ── -->
+                <div id="consumptionTab" class="tab-content" role="tabpanel">
+                    <div class="form-group">
+                        <label id="labelClothes">New Clothes Bought Monthly: <span id="clothesValue">2</span> items</label>
+                        <span class="tooltip" title="Fast fashion has huge carbon cost">?</span>
+                        <input type="range" id="clothes" min="0" max="10" value="2" step="1" oninput="updateSlider('clothes')">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelElectronics">Electronic Devices Purchased Yearly: <span id="electronicsValue">1</span> devices</label>
+                        <span class="tooltip" title="Electronics production is highly carbon-intensive">?</span>
+                        <input type="range" id="electronics" min="0" max="10" value="1" step="1" oninput="updateSlider('electronics')">
+                    </div>
+                    <div class="form-group">
+                        <label id="labelFoodWaste">Food Waste per Week (kg): <span id="foodWasteValue">2</span> kg</label>
+                        <span class="tooltip" title="Food waste in landfill produces methane">?</span>
+                        <input type="range" id="foodWaste" min="0" max="10" value="2" step="0.5" oninput="updateSlider('foodWaste')">
+                    </div>
+                </div>
+
+            </div><!-- /tab-content-wrapper -->
+
+            <!-- Submit Panel -->
+            <div class="submit-panel">
+                <div class="submit-info">
+                    <span class="submit-info-icon">🛰️</span>
+                    <div>
+                        <p id="submitInfoTitle" class="submit-info-title">Ready to Analyze</p>
+                        <p id="submitInfoSub" class="submit-info-sub">Gemini AI · HCHO Plumes · Proximity Risk</p>
+                    </div>
+                </div>
+                <button class="btn-primary btn-analyze" onclick="handleSubmit()" id="calculateBtn">
+                    ✨ Analyze with Gemini AI
+                </button>
+            </div>
+
+            <footer class="footer">© 2026 VayuSense Platform · Hackathon Edition · Powered by Google Cloud &amp; Gemini AI</footer>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCREEN 3 — Results: Atmospheric Risk Profile
+    ════════════════════════════════════════════════════════════════ -->
+    <div id="resultsScreen" class="screen results-screen">
+        <div class="results-container">
+
+            <!-- Loading Overlay (shown while waiting for backend) -->
+            <div id="loadingOverlay" class="loading-overlay">
+                <div class="satellite-scan">
+                    <div class="scan-ring ring-1"></div>
+                    <div class="scan-ring ring-2"></div>
+                    <div class="scan-ring ring-3"></div>
+                    <div class="scan-icon">🛰️</div>
+                </div>
+                <p class="loading-title">Scanning Atmospheric Data</p>
+                <p class="loading-sub" id="loadingStatus">Dispatching to Google Cloud Function…</p>
+                <div class="loading-steps">
+                    <span class="step" id="step1">⬜ Computing baseline score</span>
+                    <span class="step" id="step2">⬜ Parsing HCHO hotspots</span>
+                    <span class="step" id="step3">⬜ Querying Gemini 1.5 Flash</span>
+                </div>
+            </div>
+
+            <!-- Results Content (revealed after API returns) -->
+            <div id="resultsContent" class="results-content" style="display:none">
+                <div class="results-header">
+                    <h1 id="resultsTitle">🌍 Your Atmospheric Risk Profile</h1>
+                    <p class="results-subtitle">Computed by Gemini 1.5 Flash · Satellite data via TROPOMI/Sentinel-5P</p>
+                </div>
+
+                <!-- Score Cards Grid -->
+                <div class="score-grid">
+                    <div class="score-card">
+                        <span class="score-icon">💨</span>
+                        <span class="score-label" id="labelBaselineScore">Baseline Score</span>
+                        <div class="score-number" id="baselineScore">—</div>
+                        <span class="score-unit">kg CO₂e / month</span>
+                    </div>
+                    <div class="score-card score-card--risk">
+                        <span class="score-icon">📡</span>
+                        <span class="score-label" id="labelProximity">Nearest Hotspot</span>
+                        <div class="score-number" id="proximityKm">—</div>
+                        <span class="score-unit">km from you</span>
+                    </div>
+                    <div class="score-card score-card--level">
+                        <span class="score-icon">⚠️</span>
+                        <span class="score-label" id="labelRiskLevel">Risk Level</span>
+                        <div class="risk-badge" id="riskBadge">—</div>
+                        <span class="score-unit" id="riskHchoLabel">HCHO ppb: —</span>
+                    </div>
+                </div>
+
+                <!-- Heatmap Section -->
+                <div class="heatmap-section">
+                    <div class="heatmap-header">
+                        <h2>🛰️ Live HCHO / AQI Atmospheric Plumes — India</h2>
+                        <p class="heatmap-caption">Agricultural burning hotspots detected via satellite (TROPOMI/Sentinel-5P) · Weighted by HCHO concentration &amp; AQI index</p>
+                    </div>
+                    <div id="heatmap-container"></div>
+                    <div class="heatmap-legend">
+                        <span class="legend-label">Low HCHO</span>
+                        <div class="legend-gradient"></div>
+                        <span class="legend-label">High HCHO</span>
+                    </div>
+                </div>
+
+                <!-- Gemini AI Actions Card -->
+                <div class="gemini-actions-card">
+                    <div class="gemini-header">
+                        <div class="gemini-badge-row">
+                            <span class="gemini-badge">✨ Gemini 1.5 Flash</span>
+                            <span class="gemini-model-tag">atmospheric-scientist mode</span>
+                        </div>
+                        <h2 id="geminiActionsTitle">Hyper-Personalized Micro-Actions</h2>
+                        <p id="geminiActionsSubtitle">Based on your carbon profile and proximity to active HCHO plumes over India</p>
+                    </div>
+                    <div class="actions-grid" id="actionsGrid">
+                        <!-- Populated dynamically by renderGeminiResults() -->
+                        <div class="action-tile action-skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+                        <div class="action-tile action-skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+                        <div class="action-tile action-skeleton"><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+                    </div>
+                </div>
+
+                <!-- Hotspot Detail -->
+                <div class="hotspot-detail-card" id="hotspotDetailCard">
+                    <h3>📍 Nearest Active Hotspot</h3>
+                    <div class="hotspot-detail-grid" id="hotspotDetailGrid">
+                        <!-- Populated by renderGeminiResults() -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="backToEditor()" id="backBtn">← Back to Editor</button>
+                    <button class="btn-secondary" onclick="showFact()" id="factBtn">💡 Did You Know?</button>
+                </div>
+            </div><!-- /resultsContent -->
+
+            <footer class="footer">© 2026 VayuSense Platform · Hackathon Edition · Powered by Google Cloud &amp; Gemini AI</footer>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         MODAL
+    ════════════════════════════════════════════════════════════════ -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()" aria-label="Close">&#215;</span>
+            <p id="modalText"></p>
+            <button class="btn-primary" onclick="closeModal()" id="modalOkBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCRIPTS
+    ════════════════════════════════════════════════════════════════ -->
+    <!-- Google Maps JavaScript API with Visualization library -->
+    <script>
+        window.MAPS_API_KEY = 'AIzaSyCScfZz3WR4aJtXMP27jSm4VSGCGuBM2nI';
+    </script>
+    <script src="app.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCScfZz3WR4aJtXMP27jSm4VSGCGuBM2nI&libraries=visualization&callback=initMap"
+        async
+        defer
+        onerror="typeof mapsLoadError === 'function' && mapsLoadError()">
+    </script>
+</body>
+</html>
