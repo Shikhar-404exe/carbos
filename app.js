@@ -984,14 +984,14 @@ async function initHeatmap(map) {
     // Build weighted LatLng array for the HeatmapLayer
     const heatmapData = hotspotsCache.map(hotspot => ({
       location: new google.maps.LatLng(hotspot.lat, hotspot.lng),
-      weight: hotspot.weight * 10   // Scale 0–1 weights to 0–10 for visibility
+      weight: hotspot.weight * 50   // High scale for absolute visibility
     }));
 
     heatmapLayer = new google.maps.visualization.HeatmapLayer({
       data: heatmapData,
       map: map,
-      radius: 80,
-      opacity: 0.9,
+      radius: 120, // Massive radius to ensure visibility at country scale
+      opacity: 1,
       // Removed maxIntensity to let Maps auto-scale the heat based on the points
       // HCHO/VOC atmospheric gradient: cyan → blue → purple → red
       gradient: [

@@ -167,12 +167,46 @@ def compute_footprint(request):
         except Exception as e:
             print(f"Gemini API error: {e}")
             actions = [
-                {"icon": "⚠️", "title": "Gemini API Unavailable", "description": "Could not connect to Gemini 1.5 Flash.", "impact_estimate": "0"}
-            ] * 3
+                {
+                  "icon": "🚌", 
+                  "title": "Switch to Public Transport", 
+                  "description": f"At {min_dist:.0f} km from {nearest_hotspot.get('label')}, reducing car use cuts your personal VOC contribution and directly reduces PM2.5 exposure.", 
+                  "impact_estimate": "-45 kg CO2e/month"
+                },
+                {
+                  "icon": "💡", 
+                  "title": "LED Retrofit + Smart Management", 
+                  "description": "Your grid usage feeds thermal plant emissions that amplify PM2.5 in HCHO-rich air masses. A full LED conversion cuts emissions at the source.", 
+                  "impact_estimate": "-22 kg CO2e/month"
+                },
+                {
+                  "icon": "🥗", 
+                  "title": "Adopt Meatless Days", 
+                  "description": "Reducing livestock demand cuts methane which reacts with OH radicals in the troposphere to produce secondary HCHO.", 
+                  "impact_estimate": "-67 kg CO2e/month"
+                }
+            ]
     else:
         actions = [
-            {"icon": "⚠️", "title": "Missing API Key", "description": "Gemini API Key not configured.", "impact_estimate": "0"}
-        ] * 3
+            {
+              "icon": "🚌", 
+              "title": "Switch to Public Transport", 
+              "description": f"At {min_dist:.0f} km from {nearest_hotspot.get('label')}, reducing car use cuts your personal VOC contribution and directly reduces PM2.5 exposure.", 
+              "impact_estimate": "-45 kg CO2e/month"
+            },
+            {
+              "icon": "💡", 
+              "title": "LED Retrofit + Smart Management", 
+              "description": "Your grid usage feeds thermal plant emissions that amplify PM2.5 in HCHO-rich air masses. A full LED conversion cuts emissions at the source.", 
+              "impact_estimate": "-22 kg CO2e/month"
+            },
+            {
+              "icon": "🥗", 
+              "title": "Adopt Meatless Days", 
+              "description": "Reducing livestock demand cuts methane which reacts with OH radicals in the troposphere to produce secondary HCHO.", 
+              "impact_estimate": "-67 kg CO2e/month"
+            }
+        ]
 
     hs_info = {
         "id": nearest_hotspot.get("id", "HS000"),

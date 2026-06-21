@@ -165,7 +165,7 @@ html {
 
 body {
     background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
-    color: var(--clr-form-text);
+    color: #1a2e1a; /* Fixed dark green text for readability */
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
@@ -393,8 +393,8 @@ body {
     cursor: pointer;
     font-family: var(--font-sans);
     font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-    color: var(--clr-gray-500);
+    font-weight: var(--fw-semibold);
+    color: #4b5563 !important; /* Force dark gray text */
     transition: all var(--dur-normal) var(--ease-out);
     white-space: nowrap;
     border-radius: var(--r-sm) var(--r-sm) 0 0;
@@ -439,8 +439,8 @@ body {
 .form-group label {
     display: block;
     margin-bottom: var(--sp-8);
-    font-weight: var(--fw-medium);
-    color: var(--clr-form-text);
+    font-weight: var(--fw-semibold);
+    color: #1a2e1a !important; /* Force dark label text */
     font-size: var(--fs-base);
 }
 
@@ -453,8 +453,9 @@ body {
     border-radius: var(--r-md);
     font-family: var(--font-sans);
     font-size: var(--fs-base);
-    color: var(--clr-form-text);
-    background: var(--clr-white);
+    color: #1a2e1a !important; /* Force dark text */
+    font-weight: 600;
+    background: #ffffff !important; /* Force white background */
     transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
     -webkit-appearance: none;
     appearance: none;
