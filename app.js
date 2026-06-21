@@ -75,7 +75,7 @@ const CLOUD_FUNCTION_URL = 'https://us-central1-scenic-energy-500112-u4.cloudfun
  * Path to the local mock hotspots dataset.
  * Used to initialize the Google Maps HeatmapLayer on the results screen.
  */
-const HOTSPOTS_PATH = './data/mock_hotspots.json';
+const HOTSPOTS_PATH = 'data/mock_hotspots.json';
 
 /* ═══════════════════════════════════════════════════════════
    MULTILINGUAL TRANSLATIONS
@@ -990,9 +990,9 @@ async function initHeatmap(map) {
     heatmapLayer = new google.maps.visualization.HeatmapLayer({
       data: heatmapData,
       map: map,
-      radius: 45,
-      opacity: 0.85,
-      maxIntensity: 10,
+      radius: 80,
+      opacity: 0.9,
+      // Removed maxIntensity to let Maps auto-scale the heat based on the points
       // HCHO/VOC atmospheric gradient: cyan → blue → purple → red
       gradient: [
         'rgba(0, 255, 255, 0)',
@@ -1074,8 +1074,13 @@ function closeModal() {
 ════════════════════════════════════════════════════════════ */
 
 window.addEventListener('load', () => {
-  // Apply default language
-  updateLanguage();
+  // Auto-detect language and skip language screen if supported
+  const lang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+  if (['en', 'fr', 'de', 'ar'].includes(lang)) {
+    selectLanguage(lang);
+  } else {
+    selectLanguage('en');
+  }
 
   // Initialize all slider display values
   ['distance', 'wasteAmount', 'clothes', 'electronics', 'foodWaste'].forEach(id => {

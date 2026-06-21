@@ -29,7 +29,8 @@ except Exception:
 
 # Initialize Gemini Client using google-genai
 try:
-    client = genai.Client()
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    client = genai.Client(api_key=api_key) if api_key else genai.Client()
 except Exception as e:
     client = None
     print(f"Failed to initialize Gemini client: {e}")

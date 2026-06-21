@@ -131,6 +131,19 @@
         --clr-form-text:    #d1fae5;
         --clr-form-sub:     #6ee7b7;
     }
+    
+    /* Fix input contrast in dark mode */
+    .form-group input[type="number"],
+    .form-group input[type="text"],
+    .form-group select {
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
+        border-color: rgba(74, 222, 128, 0.25);
+    }
+    
+    .form-group select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234ade80' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    }
 }
 
 /* ══════════════════════════════════════════════
@@ -299,8 +312,8 @@ body {
     background: rgba(255,255,255,0.97);
     border-radius: var(--r-2xl);
     box-shadow: var(--shadow-lg);
-    max-width: 860px;
-    width: 100%;
+    max-width: 1000px;
+    width: 95%;
     margin: var(--sp-20) auto;
     padding: var(--sp-32);
     backdrop-filter: blur(12px);
